@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist ali-sms/yii2-alisms "*"
+php composer.phar require --prefer-dist zc/yii2-alisms "*"
 ```
 
 or add
 
 ```
-"ali-sms/yii2-alisms": "*"
+"zc/yii2-alisms": "*"
 ```
 
 to the require section of your `composer.json` file.
