@@ -1,5 +1,5 @@
 {
-    "name": "ali-sms/yii2-alisms",
+    "name": "zc/yii2-alisms",
     "description": "阿里大于发送短信 yii2扩展",
     "type": "yii2-extension",
     "keywords": ["yii2","extension","alisms"],
