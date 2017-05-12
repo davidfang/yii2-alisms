@@ -59,6 +59,23 @@ Once the extension is installed, simply use it in your code by  :
 ```
 * 发验证码api访问地址
 http://example.dev/sms-api/get-code?mobile=15699999999&id=1
+
+校验验证码
+---------
+
+在需要的model里面添加rule规则
+
+```php
+['code', 'required'],
+            //['code', 'checkCode'],
+            ['code',  function ($attribute, $params) {
+                $smsType = 1;//跟前台访问验证码的id一致
+                if(!\zc\yii2Alisms\Sms::checkCode($this->mobile,$this->code,$smsType)){
+                    $this->addError('code','手机验证码不正确');
+                    return false;
+                }
+            }],
+```
  
  
  
