@@ -133,6 +133,7 @@ class ApiController extends Controller
          $smsLog = new SmsLog();
          $smsLog->tmp_id = $model->id;
          $smsLog->content = $code;
+         $smsLog->mobile = $mobile;
 
         if(isset($resp->result)){
             if($resp->result->success){

@@ -10,6 +10,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property integer $id
  * @property integer $tmp_id
+ * @property integer $mobile
  * @property string $content
  * @property integer $status
  * @property string $result
@@ -55,7 +56,7 @@ class SmsLog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [[ 'tmp_id', 'content'], 'required'],
+            [[ 'tmp_id', 'content','mobile'], 'required'],
             [['id', 'tmp_id', 'status', 'created_at', 'updated_at'], 'integer'],
             [['content'], 'string', 'max' => 200],
             [['result'], 'string', 'max' => 500],
@@ -71,6 +72,7 @@ class SmsLog extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'tmp_id' => '模板名',
+            'mobile' => '手机',
             'content' => '内容',
             'status' => '状态',
             'result' => '结果',

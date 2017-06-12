@@ -19,7 +19,7 @@ class SmsLogSearch extends SmsLog
     {
         return [
             [['id', 'tmp_id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['content', 'result'], 'safe'],
+            [['content','mobile', 'result'], 'safe'],
         ];
     }
 
@@ -60,6 +60,7 @@ class SmsLogSearch extends SmsLog
         ]);
 
         $query->andFilterWhere(['like', 'content', $this->content])
+            ->andFilterWhere(['like', 'mobile', $this->mobile])
             ->andFilterWhere(['like', 'result', $this->result]);
 
         return $dataProvider;
