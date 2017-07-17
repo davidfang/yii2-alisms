@@ -45,7 +45,10 @@ class ApiController extends Controller
 
         }else{//手机格式验证错误
             $response->setStatusCode(422);
-            return ['mobile'=>'手机格式不正确'];
+            return [
+                'status'=>false,
+                'msg'=>'手机格式不正确'
+            ];
         }
         return $this->render('index');
     }
@@ -90,7 +93,7 @@ class ApiController extends Controller
              return [
                  'status'=>true,
                  'code'=>$cache->get($key),
-                 'message'=>'短信发送成功'
+                 'msg'=>'短信发送成功'
              ];
          }
          //var_dump([$key,$cache->get($key)]);exit;
