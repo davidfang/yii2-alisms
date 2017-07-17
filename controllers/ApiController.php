@@ -36,7 +36,7 @@ class ApiController extends Controller
             if($model->captcha == SmsTemplate::CAPTCHA_ON){//验证码启用
                 $caprchaValidator = new CaptchaValidator();
                 $caprchaValidator->skipOnEmpty = true;
-                if(! $caprchaValidator->validate($caprcha)){
+                if( empty($caprcha) || ! $caprchaValidator->validate($caprcha)){
                     $response->setStatusCode(422);
                     return [ 'status'=>false,'msg'=>'验证码不正确'];
                 }
