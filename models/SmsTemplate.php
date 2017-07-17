@@ -29,7 +29,7 @@ class SmsTemplate extends \yii\db\ActiveRecord
     const STATUS_OFF = 2;//禁用
 
     const CAPTCHA_ON = 1;//验证码启用
-    const CAPTCHA_OFF = 2;//验证码禁用
+    const CAPTCHA_OFF = 0;//验证码禁用
 
     /**
      * 获取状态集
