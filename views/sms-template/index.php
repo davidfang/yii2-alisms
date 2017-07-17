@@ -32,7 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'tmpId',
             // 'content',
             // 'param',
-            // 'status',
+             'status',
+             'captcha',
             // 'created_at',
             // 'updated_at',
 
