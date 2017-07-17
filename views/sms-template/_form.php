@@ -30,6 +30,8 @@ use yii\bootstrap\ActiveForm;
 
     <?php echo $form->field($model, 'status')->textInput() ?>
 
+    <?php echo $form->field($model, 'captcha')->textInput() ?>
+
     <?php  $form->field($model, 'created_at')->textInput() ?>
 
     <?php  $form->field($model, 'updated_at')->textInput() ?>
