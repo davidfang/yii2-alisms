@@ -27,16 +27,16 @@ class ApiController extends Controller
      * Renders the index view for the module
      * @return string
      */
-    public function actionGetCode($mobile,$id,$caprcha = null)
+    public function actionGetCode($mobile,$id,$captcha = null)
     {
         $response = \Yii::$app->getResponse();
         $response->format = Response::FORMAT_JSON;
         if($this->validateMobile($mobile)){
             $model = SmsTemplate::findOne($id);
             if($model->captcha == SmsTemplate::CAPTCHA_ON){//验证码启用
-                $caprchaValidator = new CaptchaValidator();
+                $captchaValidator = new CaptchaValidator();
                 $caprchaValidator->skipOnEmpty = true;
-                if( empty($caprcha) || ! $caprchaValidator->validate($caprcha)){
+                if( empty($captcha) || ! $captchaValidator->validate($captcha)){
                     $response->setStatusCode(422);
                     return [ 'status'=>false,'msg'=>'验证码不正确'];
                 }

@@ -75,7 +75,7 @@ class SmsTemplate extends \yii\db\ActiveRecord
     {
         return [
             [['appkey', 'secretKey', 'sms_free_sign_name', 'name', 'tmpId', 'content', 'param'], 'required'],
-            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['status','captcha', 'created_at', 'updated_at'], 'integer'],
             [['appkey', 'secretKey', 'sms_free_sign_name', 'name', 'tmpId'], 'string', 'max' => 45],
             [['content'], 'string', 'max' => 500],
             [['param'], 'string', 'max' => 200],
