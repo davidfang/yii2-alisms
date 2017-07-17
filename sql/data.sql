@@ -22,6 +22,7 @@ REATE TABLE `sms_template` (
   `content` varchar(500) NOT NULL COMMENT '内容',
   `param` varchar(200) NOT NULL COMMENT '参数(json格式）',
   `status` smallint(1) NOT NULL DEFAULT '1' COMMENT '状态',
+  `captcha` smallint(1) NOT NULL DEFAULT '0' COMMENT '验证码',
   `created_at` int(11) DEFAULT NULL COMMENT '创建时间',
   `updated_at` int(11) DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)

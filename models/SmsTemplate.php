@@ -17,6 +17,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $content
  * @property string $param
  * @property integer $status
+ * @property integer $captcha
  * @property integer $created_at
  * @property integer $updated_at
  *
@@ -27,6 +28,9 @@ class SmsTemplate extends \yii\db\ActiveRecord
     const STATUS_ON = 1;//启用
     const STATUS_OFF = 2;//禁用
 
+    const CAPTCHA_ON = 1;//验证码启用
+    const CAPTCHA_OFF = 2;//验证码禁用
+
     /**
      * 获取状态集
      * @return array
@@ -35,6 +39,16 @@ class SmsTemplate extends \yii\db\ActiveRecord
         return [
             self::STATUS_ON => '启用',
             self::STATUS_OFF => '禁用',
+        ];
+    }
+    /**
+     * 获取状态集
+     * @return array
+     */
+    public static function getCaptchas(){
+        return [
+            self::CAPTCHA_ON => '启用',
+            self::CAPTCHA_OFF => '禁用',
         ];
     }
     /**
@@ -83,6 +97,7 @@ class SmsTemplate extends \yii\db\ActiveRecord
             'content' => '内容',
             'param' => '参数(json格式）',
             'status' => '状态',
+            'captcha' => '验证码',
             'created_at' => '创建时间',
             'updated_at' => '修改时间',
         ];

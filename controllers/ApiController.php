@@ -4,6 +4,7 @@ namespace zc\yii2Alisms\controllers;
 
 
 use yii\base\ErrorException;
+use yii\captcha\CaptchaValidator;
 use yii\web\Controller;
 use yii\web\Response;
 use zc\yii2Alisms\models\SmsLog;
@@ -26,15 +27,22 @@ class ApiController extends Controller
      * Renders the index view for the module
      * @return string
      */
-    public function actionGetCode($mobile,$id)
+    public function actionGetCode($mobile,$id,$caprcha = null)
     {
         $response = \Yii::$app->getResponse();
         $response->format = Response::FORMAT_JSON;
         if($this->validateMobile($mobile)){
             $model = SmsTemplate::findOne($id);
+            if($model->captcha == SmsTemplate::CAPTCHA_ON){//验证码启用
+                $caprchaValidator = new CaptchaValidator();
+                if(! $caprchaValidator->validate($caprcha)){
+                    $response->setStatusCode(422);
+                    return [ 'status'=>false,'msg'=>'验证码不正确'];
+                }
+            }
             if(!$model){
                 $response->setStatusCode(422);
-                return ['msg'=>'非法请求'];
+                return [ 'status'=>false,'msg'=>'非法请求'];
             }
 
             $return = $this->sendCode($mobile,$model);
