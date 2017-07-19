@@ -59,11 +59,42 @@ Once the extension is installed, simply use it in your code by  :
 ```
 * 发验证码api访问地址
 http://example.dev/sms-api/get-code?mobile=15699999999&id=1&captcha=sdfwf
+   参数：
+ 
   * mobile: 手机 
   * id:短信模板ID
   * captcha：可选 ，在需要图形验证码的时候使用,是否需要图形验证码在后台设置
 
-* 校验验证码api访问地址
+   返回：
+ 
+  * status: true,
+  * code: "7025",
+  * hash1: "7025",原hash
+  * hash2: "7025",小写hash
+  * msg: "短信发送成功"
+  
+  说明：
+  ``
+  hash1、hash2可以用于客户端的验证，验证方法参考下面
+  ``
+  ```php
+    /** 生成方法
+     * Generates a hash code that can be used for client-side validation.
+     * @param string $code the CAPTCHA code
+     * @return string a hash code generated from the CAPTCHA code
+     * /
+    public function generateValidationHash($code)
+    {
+        for ($h = 0, $i = strlen($code) - 1; $i >= 0; --$i) {
+            $h += ord($code[$i]);
+        }
+
+        return $h;
+    } 
+    ```
+
+
+* 校验验证码api访问地址 （可以不用了）
 http://example.dev/sms-api/check-code?mobile=15699999999&code=1&id=1
   * mobile: 手机 
   * id:短信模板ID
