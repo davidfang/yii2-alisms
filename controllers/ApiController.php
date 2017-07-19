@@ -62,6 +62,8 @@ class ApiController extends Controller
     }
 
     public function actionCheckCode($phone,$code){
+        $response = \Yii::$app->getResponse();
+        $response->format = Response::FORMAT_JSON;
         $cacheCode = \Yii::$app->cache->get('sendCode'.$phone);
         //$cache = \Yii::$app->cache;
         //var_dump([$code ,$phone, $cacheCode,$cache]);exit;
