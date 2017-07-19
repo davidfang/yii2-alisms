@@ -61,10 +61,10 @@ class ApiController extends Controller
         return $this->render('index');
     }
 
-    public function actionCheckCode($phone,$code){
+    public function actionCheckCode($mobile,$code){
         $response = \Yii::$app->getResponse();
         $response->format = Response::FORMAT_JSON;
-        $cacheCode = \Yii::$app->cache->get('sendCode'.$phone);
+        $cacheCode = \Yii::$app->cache->get('sendCode'.$mobile);
         //$cache = \Yii::$app->cache;
         //var_dump([$code ,$phone, $cacheCode,$cache]);exit;
         if($code === $cacheCode){
