@@ -60,6 +60,17 @@ class ApiController extends Controller
         }
         return $this->render('index');
     }
+
+    public function actionCheckCode($phone,$code){
+        $cacheCode = \Yii::$app->cache->get('sendCode'.$phone);
+        //$cache = \Yii::$app->cache;
+        //var_dump([$code ,$phone, $cacheCode,$cache]);exit;
+        if($code === $cacheCode){
+            return [ 'status'=>true,'msg'=>'验证码正确'];
+        }else{
+            return [ 'status'=>false,'msg'=>'验证码不正确'];
+        }
+    }
     /**
      * Validates the Mobile.
      * This method serves as the inline validation for Mobile.
