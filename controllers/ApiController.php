@@ -61,10 +61,20 @@ class ApiController extends Controller
         return $this->render('index');
     }
 
-    public function actionCheckCode($mobile,$code){
+    /**
+     * 校验验证码是否正确
+     * @param $mobile 手机
+     * @param $code 验证码
+     * @param $id 校验的模板ID
+     * @return array
+     */
+    public function actionCheckCode($mobile,$code,$id){
         $response = \Yii::$app->getResponse();
         $response->format = Response::FORMAT_JSON;
-        $cacheCode = \Yii::$app->cache->get('sendCode'.$mobile);
+
+        $key = "SMS_{$id}_{$mobile}";
+
+        $cacheCode = \Yii::$app->cache->get($key);
         //$cache = \Yii::$app->cache;
         //var_dump([$code ,$phone, $cacheCode,$cache]);exit;
         if($code === $cacheCode){

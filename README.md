@@ -59,12 +59,15 @@ Once the extension is installed, simply use it in your code by  :
 ```
 * 发验证码api访问地址
 http://example.dev/sms-api/get-code?mobile=15699999999&id=1&captcha=sdfwf
-```
-captcha：可选 ，在需要图形验证码的时候使用,是否需要图形验证码在后台设置
-```
-* 校验验证码api访问地址
-http://example.dev/sms-api/check-code?mobile=15699999999&code=1
+  * mobile: 手机 
+  * id:短信模板ID
+  * captcha：可选 ，在需要图形验证码的时候使用,是否需要图形验证码在后台设置
 
+* 校验验证码api访问地址
+http://example.dev/sms-api/check-code?mobile=15699999999&code=1&id=1
+  * mobile: 手机 
+  * id:短信模板ID
+  * code:验证码 
 校验验证码
 ---------
 
