@@ -55,8 +55,8 @@ class ApiController extends Controller
                 return [
                     'status' => true,
                     'code' => $code,
-                    'has1' => $this->generateValidationHash($code),
-                    'has2' => $this->generateValidationHash(strtolower($code)),
+                    'hash1' => $this->generateValidationHash($code),
+                    'hash2' => $this->generateValidationHash(strtolower($code)),
                     'msg' => '短信发送成功'
                 ];
             }
