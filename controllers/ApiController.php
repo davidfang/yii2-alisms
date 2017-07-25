@@ -15,6 +15,7 @@ use zc\yii2Alisms\models\SmsTemplate;
  */
 class ApiController extends Controller
 {
+    public $exitTime = 3600;
     /**
      * Renders the index view for the module
      * @return string
@@ -23,6 +24,7 @@ class ApiController extends Controller
     {
         return $this->render('index');
     }
+
 
     /**
      * Renders the index view for the module
@@ -219,7 +221,7 @@ function sendCode($mobile, $model)
                 'message' => '短信发送成功'
             ];
             //写入缓存
-            $cacheResult = $cache->set($key, $code, time() + 36000);
+            $cacheResult = $cache->set($key, $code, time() + $this->exitTime);
             //var_dump($cacheResult);exit;
             //return true;
         } else {
