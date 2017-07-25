@@ -38,26 +38,28 @@ class ApiController extends Controller
                 $captchaValidator = new CaptchaValidator();
                 if (!$captchaValidator->validate($captcha)) {
                     $response->setStatusCode(422);
-                    return ['status' => false, 'msg' => '验证码不正确'];
+                    return ['status' => false, 'data'=>['msg' => '验证码不正确']];
                 }
             }
             if (!$model) {
                 $response->setStatusCode(422);
-                return ['status' => false, 'msg' => '非法请求'];
+                return ['status' => false, 'data'=>['msg' => '非法请求']];
             }
 
             $return = $this->sendCode($mobile, $model);
             if (!$return['status']) {
                 $response->setStatusCode(422);
-                return ['status' => false, 'msg' => '请求失败'];
+                return ['status' => false, 'data'=>[ 'msg' => '请求失败']];
             } else {
                 $code = $return['code'];
                 return [
                     'status' => true,
-                    'code' => $code,
-                    'hash1' => $this->generateValidationHash($code),
-                    'hash2' => $this->generateValidationHash(strtolower($code)),
-                    'msg' => '短信发送成功'
+                    'data'=>[
+                        'code' => $code,
+                        'hash1' => $this->generateValidationHash($code),
+                        'hash2' => $this->generateValidationHash(strtolower($code)),
+                        'msg' => '短信发送成功'
+                    ]
                 ];
             }
             return $return;
@@ -66,7 +68,9 @@ class ApiController extends Controller
             $response->setStatusCode(422);
             return [
                 'status'=>false,
-                'msg'=>'手机格式不正确'
+                'data'=>[
+                    'msg'=>'手机格式不正确'
+                ]
             ];
         }
 
@@ -92,9 +96,9 @@ function actionCheckCode($mobile, $code, $id)
     //$cache = \Yii::$app->cache;
     //var_dump([$code ,$phone, $cacheCode,$cache]);exit;
     if ($code === $cacheCode) {
-        return ['status' => true, 'msg' => '验证码正确'];
+        return ['status' => true, 'data'=>['msg' => '验证码正确']];
     } else {
-        return ['status' => false, 'msg' => '验证码不正确'];
+        return ['status' => false, 'data'=>['msg' => '验证码不正确']];
     }
 }
 
