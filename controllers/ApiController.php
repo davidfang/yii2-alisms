@@ -221,7 +221,7 @@ function sendCode($mobile, $model)
                 'message' => '短信发送成功'
             ];
             //写入缓存
-            $cacheResult = $cache->set($key, $code, time() + $this->exitTime);
+            $cacheResult = $cache->set($key, $code, $this->exitTime);
             //var_dump($cacheResult);exit;
             //return true;
         } else {
