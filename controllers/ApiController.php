@@ -24,7 +24,19 @@ class ApiController extends Controller
     {
         return $this->render('index');
     }
-
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionGetCodeCash($mobile, $id, $captcha = null)
+    {
+        //$response = \Yii::$app->getResponse();
+        //$response->format = Response::FORMAT_JSON;
+        $cache = \Yii::$app->getCache();
+        $key = "SMS_{$id}_{$mobile}";
+        var_dump($cache); //已经发送 缓存
+        exit;
+    }
 
     /**
      * Renders the index view for the module
@@ -221,7 +233,7 @@ function sendCode($mobile, $model)
                 'message' => '短信发送成功'
             ];
             //写入缓存
-            $cacheResult = $cache->set($key, $code, time() + $this->exitTime);
+            $cacheResult = $cache->set($key, $code, $this->exitTime);
             //var_dump($cacheResult);exit;
             //return true;
         } else {
