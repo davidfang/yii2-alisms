@@ -36,10 +36,11 @@ Once the extension is installed, simply use it in your code by  :
 -------
 * 配置文件
 ```php
-"sms" => [
-            "class" => "zc\yii2Alisms\Module",
-        ]
-        
+'modules'=>[
+            "sms" => [
+                        "class" => "zc\yii2Alisms\Module",
+                    ]
+       ] 
 ```
 
 * 后台管理访问地址
@@ -51,10 +52,12 @@ Once the extension is installed, simply use it in your code by  :
 -------
 * 配置文件
 ```php
-'sms-api' => [
-                'class' => 'zc\yii2Alisms\controllers\ApiController',
-                'exitTime' => 300
-            ],
+'controllerMap' => [
+            'sms-api' => [
+                            'class' => 'zc\yii2Alisms\controllers\ApiController',
+                            'exitTime' => 300
+                        ],
+            ]
 ```
 * 发验证码api访问地址
 http://example.dev/sms-api/get-code?mobile=15699999999&id=1&captcha=sdfwf
